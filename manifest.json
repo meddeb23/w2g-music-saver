@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "w2g playlist",
+  "description": "Base Level Extension",
+  "version": "1.0",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js"],
+      "matches": ["https://w2g.tv/en/room/*"]
+    }
+  ],
+  "action": {
+    "default_popup": "pages/popup.html"
+  }
+}
