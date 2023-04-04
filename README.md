@@ -9,6 +9,17 @@ W2G is a web application that allows you to watch YouTube videos in real-time wi
 - **Replay saved music in any room:** Once you have saved music using the extension, you can replay it in any W2G room that you create. This allows you to keep your favorite music in your playlist, even if your W2G room expires.
 - **Easy to use:** W2G Music Saver is simple and easy to use. Just install the extension in your Chrome browser, and you'll be able to save and replay music from your W2G playlist with ease. 
 
+## 👨‍💻 Installation
+To install W2G Music Saver locally in developer mode, follow these steps:
+
+- Clone the GitHub repository to your local machine using the following command: git clone https://github.com/meddeb23/w2g-music-saver
+- Open your Chrome browser and navigate to chrome://extensions/.
+- Enable the "Developer mode" toggle on the top right corner of the page.
+- Click on the "Load unpacked" button on the top left corner of the page.
+- Select the directory where you cloned the repository in step 1.
+- The W2G Music Saver extension will be loaded in your Chrome browser and ready to use.
+
+
 ## ♟ Usage
 To use W2G Music Saver, follow these steps:
 
