@@ -5,21 +5,29 @@ function checkAddition(old) {
 
 const searchField = document.querySelector("#search-bar-input")
 const searchBtn = document.querySelector("#search-bar-form > div > button")
-searchField.addEventListener("change", () => { console.log("form submition"); addSaveBtn(5) })
+searchField.addEventListener("change", () => addSaveBtn(5))
+
+
 async function getPlaylist() {
     const data = await chrome.storage.local.get(["playlist"])
     return data.playlist ? data.playlist : []
 }
 
-
 const saveSong = async () => {
     const title = document.querySelector("div.leading-tight.mod-player.sm\\:text-base.text-xs.w2g-search-title").innerText
     const url = searchField.value
-    const list = await getPlaylist()
-    chrome.storage.local.set({ "playlist": [...list, { title, url }] }).then(() => {
-        console.log("save to local storage");
-    });
+    saveSongToPlaylist({ title, url })
+}
 
+async function saveSongToPlaylist(song) {
+    const { selected } = await chrome.storage.local.get(["selected"])
+    const oldStorage = await getPlaylists()
+    oldStorage[selected].push(song)
+    await chrome.storage.local.set({ "playlists": oldStorage })
+}
+async function getPlaylists() {
+    const { playlists } = await chrome.storage.local.get(["playlists"])
+    return playlists
 }
 chrome.runtime.onMessage.addListener(async (obj, sender, response) => {
     const { type, value } = obj
@@ -28,28 +36,24 @@ chrome.runtime.onMessage.addListener(async (obj, sender, response) => {
         // Dispatch the event on the input element
         searchField.dispatchEvent(new Event("change"));
         searchBtn.click()
-        addToPlaylist(5)
+        addToW2GPlaylist(5)
     } else if (type === "ADD_ALL") {
         for (const { url, title } of value) {
-            console.log("adding " + title)
             searchField.value = url
             // Dispatch the event on the input element
             searchField.dispatchEvent(new Event("change"));
             searchBtn.click()
-            await addToPlaylist(5)
+            await addToW2GPlaylist(5)
 
         }
     }
 
 })
 
-async function addToPlaylist(n) {
+async function addToW2GPlaylist(n) {
     const b = document.querySelector("button.hidden.mod_pl_interaction.mod-pl.px-2.py-1.sm\\:\\!inline-flex.text-sm.w2g-button")
-    if (b) {
-        const title = document.querySelector("div.leading-tight.mod-player.sm\\:text-base.text-xs.w2g-search-title").innerText
-        console.log("adding song", n, title); b.click()
-    }
-    else if (n > 0) await delay(() => addToPlaylist(n - 1), 2000)
+    if (b) b.click()
+    else if (n > 0) await delay(() => addToW2GPlaylist(n - 1), 2000)
 }
 
 async function addSaveBtn(n) {
@@ -60,16 +64,9 @@ async function addSaveBtn(n) {
         b.classList.add("hidden", "mod-chat", "mr-2", "px-2", "py-1", "sm:!inline-flex", "text-sm", "w2g-button")
         b.addEventListener('click', saveSong)
         buttonContainer.appendChild(b)
-    } else {
-        if (n > 0) await delay(() => addSaveBtn(n - 1), 2000)
-
-    }
+    } else if (n > 0) await delay(() => addSaveBtn(n - 1), 2000)
 }
 
 function delay(cb, ms) {
     return new Promise(resolve => setTimeout(async () => { await cb(); resolve() }, ms));
-}
-
-function retry(n = 5) {
-
 }

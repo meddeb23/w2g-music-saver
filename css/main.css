@@ -1,24 +1,97 @@
 body {
   width: 20rem;
+  background-color: #f5f5f5;
+  font-family: "Roboto", sans-serif;
 }
 
-ul {
-  list-style-type: none;
-  padding-inline-start: 0;
-  margin: 1rem 0;
+.body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
 }
 
-li {
+.container {
+  padding: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+select {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 5px;
+}
+
+button {
+  padding: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+input {
+  width: 100%;
+  margin-bottom: 0.75rem;
+  outline: none;
+  border: 1px solid;
   padding: 0.25rem;
-}
-li:nth-child(odd) {
-  background: #80808030;
-}
-li:nth-child(even) {
-  background: #ffffff;
 }
 
 h3,
 p {
   margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+li:hover {
+  background-color: #f1f1f1;
+}
+
+li span {
+  margin-right: 10px;
+}
+
+li .delete-button {
+  display: none;
+}
+
+li:hover .delete-button {
+  display: block;
+}
+
+li button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+li button.copy {
+  color: blue;
+}
+
+li button.delete {
+  color: red;
 }

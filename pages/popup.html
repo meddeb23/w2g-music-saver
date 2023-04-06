@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../css/main.css" />
     <title>Playlist</title>
   </head>
@@ -14,12 +18,24 @@
           <h3 class="title">Tab Title</h3>
           <p class="pathname">Tab Pathname</p>
         </a>
+        <span id="deleteSong">delete</span>
       </li>
     </template>
-    <h1>Your PlayList</h1>
-    <button>Create PlayList</button>
-    <button id="play_list">play PlayList</button>
-    <ul></ul>
-    <script src="../popup.js" type="module"></script>
+    <div class="container">
+      <h2>Select a Playlist:</h2>
+      <select id="playlistSelect"></select>
+      <button id="playButton">Play</button>
+      <button id="deletePLButton">delete</button>
+      <h2>Create a New Playlist:</h2>
+      <input
+        type="text"
+        id="newPlaylistInput"
+        placeholder="Enter Playlist Name"
+      />
+      <button id="createPlaylistButton">Create Playlist</button>
+      <h2>Playlist Songs:</h2>
+      <ul id="songList"></ul>
+    </div>
+    <script src="../scripts/popup.js" type="module"></script>
   </body>
 </html>

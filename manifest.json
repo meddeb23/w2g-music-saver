@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "w2g playlist",
+  "name": "W2G Music Saver",
   "description": "Base Level Extension",
   "version": "1.0",
   "permissions": ["storage"],
