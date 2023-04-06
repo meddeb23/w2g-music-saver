@@ -110,6 +110,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             option.textContent = playlistName;
             playlistSelect.appendChild(option);
             newPlaylistInput.value = '';
+            await selectPlaylist(playlistName)
+            renderPlaylistNames()
             console.log(`Playlist '${playlistName}' created`);
         }
     }
